@@ -1,8 +1,8 @@
-import { List, ListItem, Text, Image, HStack } from "@chakra-ui/react";
+import { List, ListItem, Button, Image, HStack } from "@chakra-ui/react";
 import { Spinner } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 
-function Genre() {
+function Genre({ onSelectGenre }) {
   const [genres, setGenres] = useState([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
@@ -14,7 +14,6 @@ function Genre() {
       .then((response) => response.json())
       .then((data) => {
         setGenres(data.results);
-
         setLoading(false);
       })
       .catch((error) => {
@@ -41,7 +40,14 @@ function Genre() {
               objectFit="cover"
             />
             <ListItem>
-              <Text>{genre.name}</Text>
+              <Button
+                onClick={() => {
+                  onSelectGenre(genre);
+                }}
+                variant="link"
+              >
+                {genre.name}
+              </Button>
             </ListItem>
           </HStack>
         ))}

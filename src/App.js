@@ -30,7 +30,10 @@ function App() {
           >
             All
           </Button>
-          <Genre onSelectGenre={(genre) => setSelectedGenre(genre)} />
+          <Genre
+            selectedGenre={selectedGenre}
+            onSelectGenre={(genre) => setSelectedGenre(genre)}
+          />
         </GridItem>
       </Show>
       <GridItem area="main">

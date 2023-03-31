@@ -2,7 +2,7 @@ import { List, ListItem, Button, Image, HStack } from "@chakra-ui/react";
 import { Spinner } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 
-function Genre({ onSelectGenre }) {
+function Genre({ onSelectGenre, selectedGenre }) {
   const [genres, setGenres] = useState([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
@@ -32,7 +32,11 @@ function Genre({ onSelectGenre }) {
     <>
       <List spacing={5}>
         {genres.map((genre) => (
-          <HStack key={genre.id}>
+          <HStack
+            borderRadius={20}
+            bg={selectedGenre === genre && "purple.800"}
+            key={genre.id}
+          >
             <Image
               boxSize="40px"
               borderRadius="full"
@@ -41,6 +45,8 @@ function Genre({ onSelectGenre }) {
             />
             <ListItem>
               <Button
+                color={selectedGenre === genre && "yellow.500"}
+                fontWeight={selectedGenre === genre && "bold"}
                 onClick={() => {
                   onSelectGenre(genre);
                 }}

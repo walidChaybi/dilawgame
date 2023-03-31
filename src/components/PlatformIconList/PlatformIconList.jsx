@@ -26,7 +26,11 @@ export default function PlatformIconList({ game }) {
   return (
     <HStack marginY={3}>
       {game.parent_platforms.map(({ platform }) => (
-        <Icon as={iconMap[platform.slug]} color="yellow.300" />
+        <Icon
+          key={platform.id}
+          as={iconMap[platform.slug]}
+          color="yellow.300"
+        />
       ))}
     </HStack>
   );

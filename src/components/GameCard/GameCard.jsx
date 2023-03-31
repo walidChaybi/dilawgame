@@ -3,6 +3,7 @@ import React from "react";
 import PlatformIconList from "../PlatformIconList/PlatformIconList";
 import CriticScore from "../CriticScore/CriticScore";
 import getCroppedImage from "../../utils/getCroppedImage";
+
 function GameCard({ game }) {
   return (
     <Card borderRadius="15px" overflow="hidden">

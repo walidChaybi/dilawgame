@@ -21,7 +21,6 @@ function GameGrid({ selectedGenre }) {
       .then((data) => {
         setGames(data.results);
         setLoading(false);
-        console.log(data.results);
       })
       .catch((error) => {
         setError(error);

@@ -2,8 +2,9 @@ import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
 import { useEffect, useState } from "react";
 
-function PlatformSelector() {
+function PlatformSelector({ onSelectPlatform, selectedPlatform }) {
   const [platforms, setPlatforms] = useState([]);
+  const [error, setError] = useState(false);
   function fetchData() {
     // https://api.rawg.io/api/games?key=e2948cfac9e64a5ba426e4d3a233587c
     let url =
@@ -15,7 +16,7 @@ function PlatformSelector() {
         setPlatforms(data.results);
       })
       .catch((error) => {
-        console.log(error);
+        setError(error);
       });
   }
 
@@ -23,14 +24,20 @@ function PlatformSelector() {
     fetchData();
   }, []);
 
+  if (error) return;
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-        Platform
+        {selectedPlatform?.name || "Platforms"}
       </MenuButton>
       <MenuList>
         {platforms.map((platform) => (
-          <MenuItem key={platform.id}>{platform.name}</MenuItem>
+          <MenuItem
+            onClick={() => onSelectPlatform(platform)}
+            key={platform.id}
+          >
+            {platform.name}
+          </MenuItem>
         ))}
       </MenuList>
     </Menu>

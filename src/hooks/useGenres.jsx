@@ -1,17 +1,16 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import apiClient from "../services/apiClient";
-
-function useGames(selectedGenre) {
-  const [games, setGames] = useState([]);
+function useGenres() {
+  const [genres, setGenres] = useState([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
     apiClient
-      .get("/games", { params: { genres: selectedGenre?.slug } })
+      .get("/genres")
       .then(({ data }) => {
-        setGames(data.results);
+        setGenres(data.results);
         setTimeout(() => {
           setLoading(false);
         }, 500);
@@ -19,9 +18,9 @@ function useGames(selectedGenre) {
       .catch((err) => {
         setError(err);
       });
-  }, [selectedGenre]);
+  }, []);
 
-  return { games, error, isLoading };
+  return { genres, error, isLoading };
 }
 
-export default useGames;
+export default useGenres;

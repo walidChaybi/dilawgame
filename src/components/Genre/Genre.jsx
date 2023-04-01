@@ -1,30 +1,12 @@
 import { List, ListItem, Button, Image, HStack } from "@chakra-ui/react";
 import { Spinner } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
+import useGenres from "../../hooks/useGenres";
 
 function Genre({ onSelectGenre, selectedGenre }) {
-  const [genres, setGenres] = useState([]);
-  const [error, setError] = useState("");
-  const [isLoading, setLoading] = useState(false);
-  function fetchData() {
-    const apiKey = "e2948cfac9e64a5ba426e4d3a233587c"; // Replace with your actual API key
-    const url = `https://api.rawg.io/api/genres?key=${apiKey}`;
-    setLoading(true);
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        setGenres(data.results);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setError(error);
-        setLoading(false);
-      });
-  }
+  const { genres, error, isLoading } = useGenres();
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  useEffect(() => {}, []);
 
   if (isLoading) return <Spinner />;
 

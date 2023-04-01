@@ -5,6 +5,8 @@ import Genre from "./components/Genre/Genre";
 import { useState } from "react";
 import PlatformSelector from "./components/PlatformSelector/PlatformSelector";
 import SortSelector from "./components/SortSelector/SortSelector";
+import SearchInput from "./components/SearchInput/SearchInput";
+
 function App() {
   const [selectedGenre, setSelectedGenre] = useState(null);
   const [selectedPlatform, setSelectedPlatform] = useState(null);

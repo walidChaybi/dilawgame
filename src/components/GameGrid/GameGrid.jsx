@@ -15,24 +15,23 @@ function GameGrid({
     selectedOrder,
     searchText
   );
+
+  if (error) return <Text>{error}</Text>;
   return (
-    <>
-      {error && <Text>{error}</Text>}
-      <SimpleGrid
-        padding={15}
-        marginY={15}
-        columns={{ sm: 1, md: 2, lg: 3 }}
-        spacing={10}
-      >
-        {games.map((game) =>
-          !isLoading ? (
-            <GameCard key={game.id} game={game} />
-          ) : (
-            <GameSkeleton key={game.id} />
-          )
-        )}
-      </SimpleGrid>
-    </>
+    <SimpleGrid
+      padding={15}
+      marginY={15}
+      columns={{ sm: 1, md: 2, lg: 3 }}
+      spacing={10}
+    >
+      {games.map((game) =>
+        !isLoading ? (
+          <GameCard key={game.id} game={game} />
+        ) : (
+          <GameSkeleton key={game.id} />
+        )
+      )}
+    </SimpleGrid>
   );
 }
 

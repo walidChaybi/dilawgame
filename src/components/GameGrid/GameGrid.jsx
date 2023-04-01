@@ -3,8 +3,12 @@ import { SimpleGrid, Text } from "@chakra-ui/react";
 import GameCard from "../GameCard/GameCard";
 import GameSkeleton from "../GameSkeleton/GameSkeleton";
 
-function GameGrid({ selectedGenre, selectedPlatform }) {
-  const { games, error, isLoading } = useGames(selectedGenre, selectedPlatform);
+function GameGrid({ selectedGenre, selectedPlatform, selectedOrder }) {
+  const { games, error, isLoading } = useGames(
+    selectedGenre,
+    selectedPlatform,
+    selectedOrder
+  );
   return (
     <>
       {error && <Text>{error}</Text>}

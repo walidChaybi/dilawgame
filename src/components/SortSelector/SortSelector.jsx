@@ -11,10 +11,13 @@ function SortSelector({ onSelectSortOrder, selectedOrder }) {
     { value: "-metacritic", label: "Popularity" },
     { value: "-rating", label: "Average rating" },
   ];
+  const currentOrder = SortOrders.find(
+    (order) => order.value === selectedOrder
+  );
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-        {selectedOrder?.name || "Relevance"}
+        Sort by: {currentOrder?.label || "Relevance"}
       </MenuButton>
       <MenuList>
         {SortOrders.map((order) => (

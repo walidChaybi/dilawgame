@@ -14,8 +14,9 @@ function PlatformSelector({ onSelectPlatform, selectedPlatform }) {
       <MenuList>
         {platforms.map((platform) => (
           <MenuItem
-            test
-            onClick={() => onSelectPlatform(platform)}
+            onClick={() => {
+              onSelectPlatform(platform);
+            }}
             key={platform.id}
           >
             {platform.name}

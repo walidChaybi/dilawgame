@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import apiClient from "../services/apiClient";
 
-function useGames(selectedGenre, selectedPlatform) {
+function useGames(selectedGenre, selectedPlatform, selectedOrder) {
   const [games, setGames] = useState([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(true);
@@ -13,6 +13,7 @@ function useGames(selectedGenre, selectedPlatform) {
         params: {
           genres: selectedGenre?.slug,
           platforms: selectedPlatform?.id,
+          ordering: selectedOrder,
         },
       })
       .then(({ data }) => {
@@ -24,7 +25,7 @@ function useGames(selectedGenre, selectedPlatform) {
       .catch((err) => {
         setError(err);
       });
-  }, [selectedGenre, selectedPlatform]);
+  }, [selectedGenre, selectedPlatform, selectedOrder]);
 
   return { games, error, isLoading };
 }
